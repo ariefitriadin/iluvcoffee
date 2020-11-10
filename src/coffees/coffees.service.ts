@@ -10,6 +10,11 @@ import {Event} from "../events/entities/event.entity";
 import {COFFEE_BRANDS} from "./coffees.constants";
 
 @Injectable()
+/*
+*  1. DEFAULT = Singleton
+*  2. Transient = Instantiate for a short lifetime/ temporary
+*  3. Request = Instantiate every request
+* */
 export class CoffeesService {
     constructor(
         @InjectRepository(Coffee)
