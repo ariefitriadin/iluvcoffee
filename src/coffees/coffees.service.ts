@@ -8,7 +8,8 @@ import {Flavor} from "./entities/flavor.entity";
 import {PaginationQueryDto} from "../common/dto/pagination-query.dto";
 import {Event} from "../events/entities/event.entity";
 import {COFFEE_BRANDS} from "./coffees.constants";
-import {ConfigService} from "@nestjs/config";
+import {ConfigService, ConfigType} from "@nestjs/config";
+import coffeesConfig from "./config/coffees.config";
 
 @Injectable()
 /*
@@ -25,9 +26,10 @@ export class CoffeesService {
         private readonly connection: Connection,
         @Inject(COFFEE_BRANDS) coffeeBrands: string[],
         private readonly configService: ConfigService,
+        @Inject(coffeesConfig.KEY)
+        private coffeesConfiguration: ConfigType<typeof coffeesConfig>,
     ) {
-        const coffeesConfig = this.configService.get('coffees.foo');
-        console.log(`database host: ${coffeesConfig}`);
+        console.log(`database host: ${coffeesConfiguration.foo}`);
     }
 
     /**
