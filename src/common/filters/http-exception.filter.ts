@@ -13,7 +13,7 @@ export class HttpExceptionFilter<T extends HttpException>
       const error =
           typeof response === 'string'
               ? { message: exceptionResponse }
-              : (exceptionResponse as object);
+              : (exceptionResponse as Record<string, unknown>);
 
       response.status(status).json({
         ...error,
