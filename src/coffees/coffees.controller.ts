@@ -4,6 +4,7 @@ import {CreateCoffeeDto} from "./dto/create-coffee.dto";
 import {UpdateCoffeeDto} from "./dto/update-coffee.dto";
 import {PaginationQueryDto} from "../common/dto/pagination-query.dto";
 import { Public } from '../common/decorators/public.decorator';
+import {ParseIntPipe} from "../common/pipes/parse-int.pipe";
 
 @Controller('coffees')
 export class CoffeesController {
@@ -17,7 +18,8 @@ export class CoffeesController {
     }
 
     @Get(':id')
-    findOne(@Param('id') id: string) {
+    findOne(@Param('id', ParseIntPipe) id: number) {
+        console.log(id);
         return this.coffeeService.findOne(id);
     }
 
@@ -27,12 +29,12 @@ export class CoffeesController {
     }
 
     @Patch(':id')
-    update(@Param('id') id: string, @Body() updateCoffeeDto: UpdateCoffeeDto) {
+    update(@Param('id', ParseIntPipe) id: string, @Body() updateCoffeeDto: UpdateCoffeeDto) {
         return this.coffeeService.update(id, updateCoffeeDto);
     }
 
     @Delete(':id')
-    remove(@Param('id') id: string) {
+    remove(@Param('id') id: number) {
         return this.coffeeService.remove(id);
     }
 }
