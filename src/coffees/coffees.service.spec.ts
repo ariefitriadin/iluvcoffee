@@ -6,8 +6,7 @@ import {Flavor} from "./entities/flavor.entity";
 import {Coffee} from "./entities/coffee.entity";
 import {COFFEE_BRANDS} from "./coffees.constants";
 import { NotFoundException } from "@nestjs/common";
-import {tryCatch} from "rxjs/internal-compatibility";
-import exp from "constants";
+
 
 type MockRepository<T = any> = Partial<Record<keyof Repository<T>, jest.Mock>>;
 const createMockRepository = <T = any>(): MockRepository<T> => ({
